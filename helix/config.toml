@@ -1,0 +1,29 @@
+theme = "solarized_mine"
+
+[editor]
+rulers = [80,]
+line-number = "relative"
+middle-click-paste = false
+# Without explicit designation, it doesn't source the global config by default
+shell = ["nu", "--config '/home/marco/.config/nushell/config.nu'", "-c"]
+bufferline = "multiple"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "block"
+select = "block"
+
+[editor.whitespace]
+render = "all"
+
+[keys.normal]
+"C-S-c" = "no_op"
+"A-w" = ":w"
+"ret" = ["open_below", "collapse_selection", "normal_mode"]
+
+[keys.insert]
+"A-q" = "normal_mode" # Maps Alt-X to enter normal mode
+# "A-w" = ["normal_mode", ":w", "insert_mode"]
+"A-;" = "collapse_selection"
+"C-p" = "move_line_up"
+"C-n" = "move_line_down"

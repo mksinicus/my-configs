@@ -1,0 +1,29 @@
+[include]
+    path = /home/marco/themes.gitconfig
+
+[core]
+    pager = delta
+    symlinks = false
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    light = true
+    features = hoopoe
+    side-by-side = false
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[user]
+    name = mksinicus
+    email = marcuszhonggh@foxmail.com
+
+[init]
+    defaultBranch = main

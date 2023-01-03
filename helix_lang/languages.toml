@@ -1,0 +1,60 @@
+[[language]]
+name = "markdown"
+file-types = [
+  "md",
+  "markdown",
+  "rmd",
+  "qmd"
+]
+
+[[language]]
+name = "css"
+language-server = { command = "css-languageserver", args = ["--stdio"]}
+
+[[language]]
+name = "rhai"
+scope = "source.rhai"
+injection-regex = "^rhai$"
+file-types = ["rhai"]
+roots = ["Cargo.lock"]
+comment-token = "//"
+indent = { tab-width = 4, unit = " " }
+language-server = { command = "rhai", args = ["lsp", "stdio"] }
+grammar = "rhai"
+# formatter = { command = "rhai", args = ["fmt"] }
+
+[[grammar]]
+name = "rhai"
+source = { git = "https://github.com/tree-sitter/tree-sitter-rust", rev = "0431a2c60828731f27491ee9fdefe25e250ce9c9"}
+
+[[language]]
+name = "rust"
+
+[language.debugger]
+name = "rust-lldb"
+transport = "stdio"
+command = "rust-lldb"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { program = "{0}" }
+
+[[language.debugger.templates]]
+name = "binary (terminal)"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { program = "{0}", runInTerminal = true }
+
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [ "pid" ]
+args = { pid = "{0}" }
+
+[[language.debugger.templates]]
+name = "gdbserver attach"
+request = "attach"
+completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
+args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }

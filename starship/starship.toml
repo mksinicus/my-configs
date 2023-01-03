@@ -1,0 +1,279 @@
+# ~/.config/starship.toml
+
+#"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+
+format = """
+$time\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$haskell\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$status\
+$container\
+$shell\
+$directory\
+$character
+"""
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+time_format = "%m-%d %T"
+style = "fg:#dc1462"
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "bold fg:#77b1d8"
+style_root = "red bold"
+
+[hostname]
+disabled = false
+ssh_only = false
+ssh_symbol = "[SSH]"
+format = "[$ssh_symbol]($style)@[$hostname]($style)"
+style = "bold fg:#0079c1"
+
+[character]
+success_symbol = "[⟩](bold fg:#69aa2a)"
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[⟨](bold fg:#69aa2a)"
+
+[directory]
+truncate_to_repo = false
+truncation_symbol = "**/"
+read_only = "[ro]"
+read_only_style = "red"
+repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+repo_root_style = "bold fg:#0062ac"
+
+[cmd_duration]
+min_time = 100
+min_time_to_notify = 100
+show_milliseconds = true
+format = '\[per [$duration]($style)\] '
+
+[package]
+format = "[$symbol$version]($style) "
+symbol = "pkg "
+version_format = "v${raw}"
+
+[localip]
+ssh_only = false
+format = "|[$localipv4](bold red): "
+disabled = false
+
+[shell]
+disabled = false
+unknown_indicator = "?sh"
+style = "bold fg:#4dafa4"
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
+[aws]
+symbol = "aws "
+
+[bun]
+symbol = "bun "
+
+[c]
+symbol = "C "
+
+[cobol]
+symbol = "cobol "
+
+[conda]
+symbol = "conda "
+
+[crystal]
+symbol = "cr "
+
+[cmake]
+symbol = "cmake "
+
+[daml]
+symbol = "daml "
+
+[dart]
+symbol = "dart "
+
+[deno]
+symbol = "deno "
+
+[dotnet]
+symbol = ".NET "
+
+[docker_context]
+symbol = "docker "
+
+[elixir]
+symbol = "exs "
+
+[elm]
+symbol = "elm "
+
+[git_branch]
+format = "de [$symbol$branch(:$remote_branch)]($style) "
+symbol = "git "
+
+[golang]
+symbol = "go "
+
+[hg_branch]
+symbol = "hg "
+
+[java]
+symbol = "java "
+
+[julia]
+symbol = "jl "
+
+[kotlin]
+symbol = "kt "
+
+[lua]
+symbol = "lua "
+
+[nodejs]
+format = "c̄ [$symbol($version )]($style)"
+symbol = "Node.js "
+
+[memory_usage]
+symbol = "memory "
+
+[nim]
+symbol = "nim "
+
+[nix_shell]
+symbol = "nix "
+
+[ocaml]
+symbol = "ml "
+
+#[package]
+#symbol = "pkg "
+
+[perl]
+symbol = "pl "
+
+[php]
+symbol = "php "
+
+[pulumi]
+symbol = "pulumi "
+
+[purescript]
+symbol = "purs "
+
+[python]
+symbol = "py "
+
+[raku]
+symbol = "raku "
+
+[ruby]
+symbol = "rb "
+
+[rust]
+format = "c̄ [$symbol($version )]($style)"
+symbol = "Rust "
+
+[scala]
+symbol = "scala "
+
+[spack]
+symbol = "spack "
+
+[sudo]
+symbol = "sudo "
+
+[swift]
+symbol = "swift "
+
+[terraform]
+symbol = "terraform "
+
+[zig]
+symbol = "zig "
+
+# henceforth appended
+
+[rlang]
+detect_files = []
+symbol = "R "
+format = "c̄ [$symbol($version )]($style)"
+style = "bold fg:#75aadb"
