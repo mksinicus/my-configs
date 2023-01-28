@@ -12,7 +12,7 @@ patch:
     - schema: kyril_international
     - schema: arabic
     - schema: toned_zhupin
-    - schema: test
+    - schema: toned_zhupin_test
     #- schema: bopomofo
     # - schema: ar_arab
     "switcher/hotkeys":

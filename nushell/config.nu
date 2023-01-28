@@ -253,9 +253,9 @@ let-env config = {
     }
   }
   history: {
-    max_size: 50000 # Session has to be reloaded for this to take effect
+    max_size: 100000 # Session has to be reloaded for this to take effect
     sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-    file_format: "plaintext" # "sqlite" or "plaintext"
+    file_format: "sqlite" # "sqlite" or "plaintext"
   }
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
@@ -521,6 +521,49 @@ let-env config = {
   ]
 }
 
+## Private configs begin
+
+# Wasmer
+let-env WASMER_DIR = "/home/marco/.wasmer"
+
+# Broot
+def-env br [
+  --args (-a): string
+] {
+  let cmd_file = (^mktemp | str trim)
+  if ($args | is-empty) {
+    ^broot --outcmd $cmd_file
+  } else {
+    ^broot $args --outcmd $cmd_file
+  }
+  let-env cmd = ((open $cmd_file) | str trim)
+  ^rm $cmd_file
+  cd ($env.cmd | str replace "cd" "" | str trim)
+}
+
+# starship init
+source ~/.cache/starship/init.nu
+
+# zoxide init
+source ~/nu/.zoxide.nu
+
+
+## More personal configurations
+# PATH
+let-env PATH = (
+  $env.PATH |
+  prepend '/home/marco/sh' |
+  prepend '/home/marco/nu' |
+  append '/home/marco/.local/share/r-miniconda/bin' | # My conda's here
+  # append '/home/marco/bin/node-v18.12.1-linux-x64/bin/' |
+  append '/home/marco/.wasmer/bin' |
+  append '/home/marco/.wabt/'
+)
+
+# EDITOR
+let-env EDITOR = "hx"
+let-env VISUAL = "alacritty -t Helix -e hx"
+
 # aliases
 alias python      = python3
 alias grep        = rg
@@ -540,56 +583,26 @@ alias "pj logch"  = pj log --channel
 alias "pj amend"  = pj record --amend
 # "
 
-# PATH
-let-env PATH = (
-  $env.PATH | prepend '/home/marco/sh'
-  | prepend '/home/marco/nu'
-  # | append '/home/marco/.local/share/r-miniconda/bin' # This overrides python
-  # | append '/home/marco/bin/node-v18.12.1-linux-x64/bin/'
-  | append '/home/marco/.wasmer/bin'
-)
-
-
-# EDITOR
-let-env EDITOR = "hx"
-let-env VISUAL = "alacritty -t Helix -e hx"
-
 # Utilities that require import
-source ~/nu/.mdcd.nu
-source ~/nu/.into-hex.nu
-source ~/nu/.clip.nu
-
-# Broot
-def-env br [
-  --args (-a): string
-] {
-  let cmd_file = (^mktemp | str trim)
-  if ($args | empty?) {
-    ^broot --outcmd $cmd_file
-  } else {
-    ^broot $args --outcmd $cmd_file
-  }
-  let-env cmd = ((open $cmd_file) | str trim)
-  ^rm $cmd_file
-  cd ($env.cmd | str replace "cd" "" | str trim)
-}
-
-# starship init
-source ~/.cache/starship/init.nu
+use ~/nu/.mdcd.nu          *
+use ~/nu/.into-hex.nu      *
+use ~/nu/.clip.nu          *
+use ~/nu/.math-is-prime.nu *
+use ~/nu/.into-utf8.nu     *
+use ~/nu/.facienda.nu      *
+use ~/nu/.url-decode.nu    *
 
 # useful variables
 let cfgs = {
-  alacritty: "~/.config/alacritty/alacritty.yml"
-  rime: "~/.local/share/fcitx5/rime/default.custom.yaml"
-  R: "~/.Rprofile"
-  git: "~/.gitconfig"
-  starship: "~/.config/starship.toml"
+  alacritty:  "~/.config/alacritty/alacritty.yml"
+  rime:       "~/.local/share/fcitx5/rime/default.custom.yaml"
+  R:          "~/.Rprofile"
+  git:        "~/.gitconfig"
+  starship:   "~/.config/starship.toml"
   fontconfig: "~/.config/fontconfig/fonts.conf"
-  delta: "~/themes.gitconfig"
-  helix: "/home/marco/.config/helix/config.toml"
+  delta:      "~/themes.gitconfig"
+  helix:      "/home/marco/.config/helix/config.toml"
   helix_lang: "/home/marco/.config/helix/languages.toml"
-  nushell: "/home/marco/.config/nushell/config.nu"
+  nushell:    "/home/marco/.config/nushell/config.nu"
+  bat:        "/home/marco/.config/bat/config"
 }
-
-# zoxide init
-source ~/nu/.zoxide.nu

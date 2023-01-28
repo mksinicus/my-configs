@@ -1,0 +1,6 @@
+# Set the theme to "Solarized (light)"
+--theme="Solarized (light)"
+
+# Filetype associations
+--map-syntax='*.qmd:Markdown'
+--map-syntax='*.rmd:Markdown'

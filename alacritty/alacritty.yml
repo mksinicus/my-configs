@@ -8,7 +8,7 @@ font:
     italic:
         family: Sarasa Mono SC Nerd
         style: Italic
-    size: 8
+    size: 7.5
 
 # https://github.com/eendroroy/alacritty-theme/blob/master/themes/solarized_light.yaml
 # Colors (Solarized Light)

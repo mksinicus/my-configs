@@ -16,6 +16,8 @@ select = "block"
 [editor.whitespace]
 render = "all"
 
+# For keymap reference, see <https://docs.helix-editor.com/keymap.html>
+
 [keys.normal]
 "C-S-c" = "no_op"
 "A-w" = ":w"
@@ -27,3 +29,5 @@ render = "all"
 "A-;" = "collapse_selection"
 "C-p" = "move_line_up"
 "C-n" = "move_line_down"
+"C-f" = "move_char_right"
+"C-b" = "move_char_left"
