@@ -30,6 +30,10 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-rust", rev = "0431a
 [[language]]
 name = "rust"
 
+[[language]]
+name = "json"
+auto-format = false
+
 [language.debugger]
 name = "rust-lldb"
 transport = "stdio"

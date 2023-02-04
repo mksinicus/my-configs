@@ -591,6 +591,9 @@ use ~/nu/.math-is-prime.nu *
 use ~/nu/.into-utf8.nu     *
 use ~/nu/.facienda.nu      *
 use ~/nu/.url-decode.nu    *
+use ~/nu/.move-recent.nu   *
+use ~/nu/.renamer.nu       *
+use ~/nu/.entity.nu        *
 
 # useful variables
 let cfgs = {
