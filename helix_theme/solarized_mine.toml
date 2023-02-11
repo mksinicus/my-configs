@@ -1,0 +1,6 @@
+inherits = "solarized_light"
+"ui.background" = {}
+# "ui.cursorline" = {}
+"ui.linenr" = { bg = "base0175" }
+"ui.linenr.selected" = { fg = "blue", modifiers = ["bold"] }
+"ui.virtual.ruler" = { bg = "base0175" }

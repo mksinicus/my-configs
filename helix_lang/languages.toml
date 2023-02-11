@@ -8,6 +8,10 @@ file-types = [
 ]
 
 [[language]]
+name = "toml"
+language-server = { command = "foobarfoobar" } # I hate the lag on exit
+
+[[language]]
 name = "css"
 language-server = { command = "css-languageserver", args = ["--stdio"]}
 
@@ -22,6 +26,10 @@ indent = { tab-width = 4, unit = " " }
 language-server = { command = "rhai", args = ["lsp", "stdio"] }
 grammar = "rhai"
 # formatter = { command = "rhai", args = ["fmt"] }
+
+[[language]]
+name = "html"
+auto-format = false
 
 [[grammar]]
 name = "rhai"

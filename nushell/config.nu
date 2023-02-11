@@ -562,7 +562,8 @@ let-env PATH = (
 
 # EDITOR
 let-env EDITOR = "hx"
-let-env VISUAL = "alacritty -t Helix -e hx"
+# let-env VISUAL = "alacritty -t Helix -e hx"
+let-env VISUAL = "hx"
 
 # aliases
 alias python      = python3
@@ -595,17 +596,23 @@ use ~/nu/.move-recent.nu   *
 use ~/nu/.renamer.nu       *
 use ~/nu/.entity.nu        *
 
+# Custom completions/externs
+use ~/nu/externs/helix.nu *
+
 # useful variables
 let cfgs = {
-  alacritty:  "~/.config/alacritty/alacritty.yml"
-  rime:       "~/.local/share/fcitx5/rime/default.custom.yaml"
-  R:          "~/.Rprofile"
-  git:        "~/.gitconfig"
-  starship:   "~/.config/starship.toml"
-  fontconfig: "~/.config/fontconfig/fonts.conf"
-  delta:      "~/themes.gitconfig"
-  helix:      "/home/marco/.config/helix/config.toml"
-  helix_lang: "/home/marco/.config/helix/languages.toml"
-  nushell:    "/home/marco/.config/nushell/config.nu"
-  bat:        "/home/marco/.config/bat/config"
+  alacritty:   "/home/marco/.config/alacritty/alacritty.yml"
+  rime:        "/home/marco/.local/share/fcitx5/rime/default.custom.yaml"
+  R:           "/home/marco/.Rprofile"
+  git:         "/home/marco/.gitconfig"
+  starship:    "/home/marco/.config/starship.toml"
+  fontconfig:  "/home/marco/.config/fontconfig/fonts.conf"
+  delta:       "/home/marco/themes.gitconfig"
+  helix:       "/home/marco/.config/helix/config.toml"
+  helix_lang:  "/home/marco/.config/helix/languages.toml"
+  helix_theme: "/home/marco/.config/helix/runtime/themes/solarized_mine.toml"
+  nushell:     "/home/marco/.config/nushell/config.nu"
+  bat:         "/home/marco/.config/bat/config"
+  bottom:      "/home/marco/.config/bottom/bottom.toml"
+  zellij:      "/home/marco/.config/zellij/config.kdl"
 }
