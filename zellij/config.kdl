@@ -166,6 +166,8 @@ keybinds {
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
     }
+    // My unbinds
+    unbind "Ctrl b" "Ctrl q"
 }
 
 plugins {

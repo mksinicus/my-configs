@@ -523,6 +523,9 @@ let-env config = {
 
 ## Private configs begin
 
+# Helix runtime
+let-env HELIX_RUNTIME = "/home/marco/.config/helix/runtime"
+
 # Wasmer
 let-env WASMER_DIR = "/home/marco/.wasmer"
 
@@ -542,16 +545,21 @@ def-env br [
 }
 
 # starship init
-source ~/.cache/starship/init.nu
+source /home/marco/.cache/starship/init.nu
 
 # zoxide init
-source ~/nu/.zoxide.nu
+source /home/marco/nu/.zoxide.nu
+
+# Rust toolchain mirror
+let-env RUSTUP_DIST_SERVER = "https://mirrors.ustc.edu.cn/rust-static"
+let-env RUSTUP_UPDATE_ROOT = "https://mirrors.ustc.edu.cn/rust-static/rustup"
 
 
 ## More personal configurations
 # PATH
 let-env PATH = (
   $env.PATH |
+  prepend '/home/marco/.cargo/bin' |
   prepend '/home/marco/sh' |
   prepend '/home/marco/nu' |
   append '/home/marco/.local/share/r-miniconda/bin' | # My conda's here
@@ -569,14 +577,15 @@ let-env VISUAL = "hx"
 alias python      = python3
 alias grep        = rg
 alias lsla        = ls -la
-alias rimecfg     = cd ~/.local/share/fcitx5/rime
+alias rimecfg     = cd /home/marco/.local/share/fcitx5/rime
 alias unzipgbk    = unzip -O cp936
 alias ghx         = alacritty -t Helix -e hx
-alias chrono      = cd ~/privo/chronographo
+alias chrono      = cd /home/marco/privo/chronographo
 alias code        = codium
 alias md          = mkdir # DOS!
 alias today       = (date now | date format %F)
 alias datetime    = (date now | date format %+)
+# alias zlj         = zellij # Seems to conflict with subcommand aliases
 
 # aliases for pijul
 alias "pj switch" = pj channel switch
@@ -585,19 +594,25 @@ alias "pj amend"  = pj record --amend
 # "
 
 # Utilities that require import
-use ~/nu/.mdcd.nu          *
-use ~/nu/.into-hex.nu      *
-use ~/nu/.clip.nu          *
-use ~/nu/.math-is-prime.nu *
-use ~/nu/.into-utf8.nu     *
-use ~/nu/.facienda.nu      *
-use ~/nu/.url-decode.nu    *
-use ~/nu/.move-recent.nu   *
-use ~/nu/.renamer.nu       *
-use ~/nu/.entity.nu        *
+use /home/marco/nu/.mdcd.nu          *
+use /home/marco/nu/.into-hex.nu      *
+use /home/marco/nu/.clip.nu          *
+use /home/marco/nu/.math-is-prime.nu *
+use /home/marco/nu/.into-utf8.nu     *
+use /home/marco/nu/.facienda.nu      *
+use /home/marco/nu/.url-decode.nu    *
+use /home/marco/nu/.move-recent.nu   *
+use /home/marco/nu/.renamer.nu       *
+use /home/marco/nu/.entity.nu        *
 
 # Custom completions/externs
-use ~/nu/externs/helix.nu *
+use /home/marco/nu/externs/helix.nu *
+use /home/marco/nu/externs/zellij.nu *
+use /home/marco/nu/externs/tar.nu
+
+# Custom completions provided by nu_scripts
+# Greatly slows down init!
+# source /home/marco/nu/third/auto-gen-completions.nu
 
 # useful variables
 let cfgs = {
@@ -615,4 +630,5 @@ let cfgs = {
   bat:         "/home/marco/.config/bat/config"
   bottom:      "/home/marco/.config/bottom/bottom.toml"
   zellij:      "/home/marco/.config/zellij/config.kdl"
+  cargo:       "/home/marco/.cargo/config"
 }
