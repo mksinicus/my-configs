@@ -12,6 +12,10 @@ name = "toml"
 language-server = { command = "foobarfoobar" } # I hate the lag on exit
 
 [[language]]
+name = "bash"
+language-server = { command = "foobarfoobar" }
+
+[[language]]
 name = "css"
 language-server = { command = "css-languageserver", args = ["--stdio"]}
 

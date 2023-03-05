@@ -1,6 +1,7 @@
 patch:
     # schema_list/+:
     schema_list:
+    - schema: toned_zhupin
     - schema: terra_pinyin
     - schema: ipa_yunlong_old
     - schema: devanagari
@@ -11,8 +12,9 @@ patch:
     - schema: tupa
     - schema: kyril_international
     - schema: arabic
-    - schema: toned_zhupin
-    - schema: toned_zhupin_test
+    - schema: html_entities
+    - schema: japanese
+    # - schema: toned_zhupin_test
     #- schema: bopomofo
     # - schema: ar_arab
     "switcher/hotkeys":

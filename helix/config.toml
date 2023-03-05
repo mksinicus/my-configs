@@ -7,6 +7,9 @@ middle-click-paste = false
 # Without explicit designation, it doesn't source the global config by default
 shell = ["nu", "--config '/home/marco/.config/nushell/config.nu'", "-c"]
 bufferline = "multiple"
+scroll-lines = 4
+cursorline = true
+color-modes = true
 
 [editor.cursor-shape]
 normal = "block"
@@ -15,6 +18,11 @@ select = "block"
 
 [editor.whitespace]
 render = "all"
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽" "╎"
+skip-levels = 1
 
 # For keymap reference, see <https://docs.helix-editor.com/keymap.html>
 
@@ -32,3 +40,6 @@ render = "all"
 "C-n" = "move_line_down"
 "C-f" = "move_char_right"
 "C-b" = "move_char_left"
+
+[keys.select]
+"A-q" = "normal_mode"

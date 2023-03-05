@@ -560,12 +560,19 @@ let-env RUSTUP_UPDATE_ROOT = "https://mirrors.ustc.edu.cn/rust-static/rustup"
 let-env PATH = (
   $env.PATH |
   prepend '/home/marco/.cargo/bin' |
+  # prepend '/home/marco/bin' |
+  # prepend '/home/marco/bin-flatpak' |
   prepend '/home/marco/sh' |
   prepend '/home/marco/nu' |
   append '/home/marco/.local/share/r-miniconda/bin' | # My conda's here
   # append '/home/marco/bin/node-v18.12.1-linux-x64/bin/' |
   append '/home/marco/.wasmer/bin' |
   append '/home/marco/.wabt/'
+)
+let-env XDG_DATA_DIRS = (
+  $env.XDG_DATA_DIRS
+  + ':/home/marco/.local/share/flatpak/exports/share'
+  + ':/var/lib/flatpak/exports/share'
 )
 
 # EDITOR
@@ -583,9 +590,17 @@ alias ghx         = alacritty -t Helix -e hx
 alias chrono      = cd /home/marco/privo/chronographo
 alias code        = codium
 alias md          = mkdir # DOS!
+alias j           = just
 alias today       = (date now | date format %F)
 alias datetime    = (date now | date format %+)
 # alias zlj         = zellij # Seems to conflict with subcommand aliases
+alias lsr         = ls -a **/*
+alias rmt         = rm -t
+alias clr         = clear
+
+# Simple closures
+alias entclip = do {|x| entity $x | clip}
+alias pathclip = do {|path| $path | path expand | xclip -sel clip}
 
 # aliases for pijul
 alias "pj switch" = pj channel switch
@@ -594,21 +609,24 @@ alias "pj amend"  = pj record --amend
 # "
 
 # Utilities that require import
-use /home/marco/nu/.mdcd.nu          *
-use /home/marco/nu/.into-hex.nu      *
-use /home/marco/nu/.clip.nu          *
-use /home/marco/nu/.math-is-prime.nu *
-use /home/marco/nu/.into-utf8.nu     *
-use /home/marco/nu/.facienda.nu      *
-use /home/marco/nu/.url-decode.nu    *
-use /home/marco/nu/.move-recent.nu   *
-use /home/marco/nu/.renamer.nu       *
-use /home/marco/nu/.entity.nu        *
+use /home/marco/nu/.mdcd.nu           *
+use /home/marco/nu/.into-hex.nu       *
+use /home/marco/nu/.clip.nu           *
+use /home/marco/nu/.math-is-prime.nu  *
+use /home/marco/nu/.into-utf8.nu      *
+use /home/marco/nu/.facienda.nu       *
+use /home/marco/nu/.url-decode.nu     *
+use /home/marco/nu/.move-recent.nu    *
+use /home/marco/nu/.renamer.nu        *
+use /home/marco/nu/.entity.nu         *
+use /home/marco/nu/.history-recent.nu *
+use /home/marco/nu/.ls-visual.nu      *
 
 # Custom completions/externs
-use /home/marco/nu/externs/helix.nu *
+use /home/marco/nu/externs/helix.nu  *
 use /home/marco/nu/externs/zellij.nu *
-use /home/marco/nu/externs/tar.nu
+use /home/marco/nu/externs/tar.nu    *
+use /home/marco/nu/externs/pijul.nu  *
 
 # Custom completions provided by nu_scripts
 # Greatly slows down init!
@@ -627,6 +645,7 @@ let cfgs = {
   helix_lang:  "/home/marco/.config/helix/languages.toml"
   helix_theme: "/home/marco/.config/helix/runtime/themes/solarized_mine.toml"
   nushell:     "/home/marco/.config/nushell/config.nu"
+  nushell-env: "/home/marco/.config/nushell/env.nu"
   bat:         "/home/marco/.config/bat/config"
   bottom:      "/home/marco/.config/bottom/bottom.toml"
   zellij:      "/home/marco/.config/zellij/config.kdl"

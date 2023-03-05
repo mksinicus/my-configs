@@ -1,14 +1,14 @@
 font:
     normal:
-        family: Sarasa Mono SC Nerd
+        family: Sarasa Mono SC Wide Nerd
         style: Regular
     bold:
-        family: Sarasa Mono SC Nerd
+        family: Sarasa Mono SC Wide Nerd
         style: Bold
     italic:
-        family: Sarasa Mono SC Nerd
+        family: Sarasa Mono SC Wide Nerd
         style: Italic
-    size: 7.5
+    size: 8
 
 # https://github.com/eendroroy/alacritty-theme/blob/master/themes/solarized_light.yaml
 # Colors (Solarized Light)
