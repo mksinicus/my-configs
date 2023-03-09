@@ -650,4 +650,5 @@ let cfgs = {
   bottom:      "/home/marco/.config/bottom/bottom.toml"
   zellij:      "/home/marco/.config/zellij/config.kdl"
   cargo:       "/home/marco/.cargo/config"
+  wezterm:     "/home/marco/.wezterm.lua"
 }

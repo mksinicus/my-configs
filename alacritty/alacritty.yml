@@ -1,12 +1,12 @@
 font:
     normal:
-        family: Sarasa Mono SC Wide Nerd
+        family: Sarasa Mono SC Nerd
         style: Regular
     bold:
-        family: Sarasa Mono SC Wide Nerd
+        family: Sarasa Mono SC Nerd
         style: Bold
     italic:
-        family: Sarasa Mono SC Wide Nerd
+        family: Sarasa Mono SC Nerd
         style: Italic
     size: 8
 
@@ -40,5 +40,5 @@ colors:
     cyan:    '0x93a1a1'
     white:   '0xfdf6e3'
 
-window:
-    opacity: 0.93
+# window:
+#     opacity: 0.93
