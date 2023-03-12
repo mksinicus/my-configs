@@ -1,10 +1,21 @@
 local wezterm = require 'wezterm'
 
 
+-- The powerline < symbol
+local LEFT_ARROW = utf8.char(0xe0b3)
+-- The filled in variant of the < symbol
+local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+-- The filled in variant of the > symbol
+local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
+
 wezterm.on('update-status', function(window, pane)
   -- Each element holds the text for a cell in a "powerline" style << fade
   local cells = {}
 
+  function urlDecode(s)
+    s = string.gsub(s, '%%(%x%x)', function(h) return string.char(tonumber(h, 16)) end)
+    return s
+  end
   -- Figure out the cwd and host of the current pane.
   -- This will pick up the hostname for the remote host if your
   -- shell is using OSC 7 on the remote host.
@@ -24,18 +35,21 @@ wezterm.on('update-status', function(window, pane)
       -- and extract the cwd from the uri
       -- cwd = cwd_uri:sub(slash)
       -- Handle the url-encoded uri
-      local function urlDecode(s)  
-        s = string.gsub(s, '%%(%x%x)', function(h) return string.char(tonumber(h, 16)) end)  
-        return s  
-      end  
       cwd = urlDecode(cwd_uri:sub(slash))
 
-      basename_len = cwd:reverse():find('/')
-      if basename_len > 30 then
-        cwd = '.../' .. wezterm.truncate_left(cwd, #cwd - basename_len + 1)
-      elseif #cwd > 30 then
+      -- Handle extra long dirnames. Currently buggy?
+      local basename_len = cwd:reverse():find('/')
+      local CWD_MAX_LEN = 26
+
+      -- Displays the current dir anyway
+      if basename_len > CWD_MAX_LEN then
+        -- 'Tis buggy
+        -- cwd = '...' .. wezterm.truncate_left(cwd, #cwd - basename_len + 2)
+        cwd = '...' .. cwd:sub(#cwd - basename_len + 1)
+      -- Truncate, based on max length
+      elseif #cwd > CWD_MAX_LEN then
         -- cwd = cwd:reverse():sub(slash)
-        cwd = wezterm.truncate_left(cwd, 30)
+        cwd = wezterm.truncate_left(cwd, CWD_MAX_LEN)
         local slash = cwd:find '/'
         cwd = '...' .. cwd:sub(slash)
       end
@@ -54,11 +68,6 @@ wezterm.on('update-status', function(window, pane)
   for _, b in ipairs(wezterm.battery_info()) do
     table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
   end
-
-  -- The powerline < symbol
-  local LEFT_ARROW = utf8.char(0xe0b3)
-  -- The filled in variant of the < symbol
-  local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 
   -- Color palette for the backgrounds of each cell
   local colors = {
@@ -101,65 +110,64 @@ wezterm.on('update-status', function(window, pane)
 end)
 
 
--- The filled in variant of the < symbol
-local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-
--- The filled in variant of the > symbol
-local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
-
+-- # Causes significant lag on hover
 -- wezterm.on(
 --   'format-tab-title',
 --   function(tab, tabs, panes, config, hover, max_width)
---     local edge_background = '#0b0022'
---     local background = '#1b1032'
---     local foreground = '#808080'
+--     local edge_background = '#073642'
+--     local background = '#657b83'
+--     local foreground = '#073642'
 
 --     if tab.is_active then
 --       background = '#859900'
---       foreground = '#073642'
+--       -- foreground = '#073642'
 --     elseif hover then
---       background = '#3b3052'
---       foreground = '#909090'
+--       background = '#a9bf00'
+--       -- foreground = '#909090'
 --     end
-
---     local tab_bar_bg = '#073642'
 
 --     local edge_foreground = background
 
 --     -- ensure that the titles fit in the available space,
 --     -- and that we have room for the edges.
 --     local title = wezterm.truncate_right(tab.active_pane.title, max_width - 2)
+--     local cwd = tab.active_pane.current_working_dir
+
+--     -- Handle extra long dirnames
+--     local basename_len = cwd:reverse():find('/')
+--     cwd = wezterm.truncate_left(cwd, basename_len - 1)
+--     cwd = wezterm.truncate_right(cwd, max_width - 5)
 
 --     return {
---       -- { Background = { Color = edge_background } },
---       -- { Foreground = { Color = edge_foreground } },
---       { Text = ' ' },
---       -- { Background = { Color = background } },
---       -- { Foreground = { Color = foreground } },
---       { Text = tab.tab_index },
---       { Text = title },
---       { Background = { Color = foreground } },
---       { Foreground = { Color = background } },
+--       { Background = { Color = edge_background } },
+--       { Foreground = { Color = edge_foreground } },
+--       { Text = SOLID_LEFT_ARROW },
+--       { Background = { Color = background } },
+--       { Foreground = { Color = foreground } },
+--       { Text = (tab.tab_index + 1) .. '. ' .. cwd },
+--       { Background = { Color = edge_background } },
+--       { Foreground = { Color = edge_foreground } },
 --       { Text = SOLID_RIGHT_ARROW },
---       { Background = { Color = tab_bar_bg } },
---       { Foreground = { Color = tab_bar_bg } },
---       { Text = " " }
 --     }
 --   end
 -- )
 
 return {
-  color_scheme = "Solarized (light) (terminal.sexy)",
-  -- color_scheme = "Solarized Light (base16)",
-  window_background_opacity = 0.9,
+  window_background_opacity = 0.93,
   use_fancy_tab_bar = false,
+  tab_max_width = 18,
+
+  -- # Color scheme and font style
+  -- color_scheme = "Solarized Light (base16)",
+  color_scheme = "Solarized (light) (terminal.sexy)",
   colors = {
     scrollbar_thumb = '#676350',
+
     tab_bar = {
       background = '#073642',
       active_tab = {
         bg_color = '#859900',
-        fg_color = '#073642',
+        fg_color = '#fdf6e3',
         intensity = 'Bold',
         -- italic = true
       },
@@ -187,6 +195,8 @@ return {
       },
     }
   },
+
+  -- # Font configuration
   -- font = wezterm.font 'Sarasa Term SC Nerd',
   font = wezterm.font_with_fallback {
     'Sarasa Term SC Nerd',

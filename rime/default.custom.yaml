@@ -1,24 +1,33 @@
 patch:
-    # schema_list/+:
-    schema_list:
-    - schema: toned_zhupin
-    - schema: terra_pinyin
-    - schema: ipa_yunlong_old
-    - schema: devanagari
-    - schema: ancient_egyptian_translit
-    - schema: jyut6ping3
-    - schema: latin_extended
-    - schema: greek
-    - schema: tupa
-    - schema: kyril_international
-    - schema: arabic
-    - schema: html_entities
-    - schema: japanese
-    - schema: hebrew
-    # - schema: toned_zhupin_test
-    #- schema: bopomofo
-    # - schema: ar_arab
-    "switcher/hotkeys":
-    - "Control+grave"
-    "menu/page_size": 9
+  # schema_list/+:
+  schema_list:
+  - schema: toned_zhupin
+  - schema: terra_pinyin
+  - schema: ipa_yunlong_old
+  - schema: devanagari
+  - schema: ancient_egyptian_translit
+  - schema: jyut6ping3
+  - schema: latin_extended
+  - schema: greek
+  - schema: tupa
+  - schema: kyril_international
+  - schema: arabic
+  - schema: html_entities
+  - schema: japanese
+  - schema: hebrew
+  # - schema: toned_zhupin_test
+  #- schema: bopomofo
+  # - schema: ar_arab
+  "switcher/hotkeys":
+  - "Control+grave"
+  "menu/page_size": 9
+  "key_binder/bindings/+":
+    - {accept: "Control+Shift+3", toggle: full_shape, when: always}
+    - {accept: "Control+Shift+numbersign", toggle: full_shape, when: always}
+    - {accept: "Control+Shift+4", toggle: simplification, when: always}
+    - {accept: "Control+Shift+dollar", toggle: simplification, when: always}
+    - {accept: "Control+Shift+5", toggle: ascii_punct, when: always}
+    - {accept: "Control+Shift+percent", toggle: ascii_punct, when: always}
+  #   - {accept: "Shift+space", toggle: full_shape, when: always}
+  #   - {accept: "Control+Shift", select: .next, when: always}
 # }

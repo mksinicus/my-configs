@@ -597,10 +597,11 @@ alias datetime    = (date now | date format %+)
 alias lsr         = ls -a **/*
 alias rmt         = rm -t
 alias clr         = clear
+alias lua         = lua5.4
+alias tarxz       = tar -c -I 'xz -6 -T0' -f
 
 # Simple closures
-alias entclip = do {|x| entity $x | clip}
-alias pathclip = do {|path| $path | path expand | xclip -sel clip}
+alias recent   = do {|x| where modified > (date now) - $x}
 
 # aliases for pijul
 alias "pj switch" = pj channel switch
@@ -634,21 +635,22 @@ use /home/marco/nu/externs/pijul.nu  *
 
 # useful variables
 let cfgs = {
-  alacritty:   "/home/marco/.config/alacritty/alacritty.yml"
-  rime:        "/home/marco/.local/share/fcitx5/rime/default.custom.yaml"
-  R:           "/home/marco/.Rprofile"
-  git:         "/home/marco/.gitconfig"
-  starship:    "/home/marco/.config/starship.toml"
-  fontconfig:  "/home/marco/.config/fontconfig/fonts.conf"
-  delta:       "/home/marco/themes.gitconfig"
-  helix:       "/home/marco/.config/helix/config.toml"
-  helix_lang:  "/home/marco/.config/helix/languages.toml"
-  helix_theme: "/home/marco/.config/helix/runtime/themes/solarized_mine.toml"
-  nushell:     "/home/marco/.config/nushell/config.nu"
-  nushell-env: "/home/marco/.config/nushell/env.nu"
-  bat:         "/home/marco/.config/bat/config"
-  bottom:      "/home/marco/.config/bottom/bottom.toml"
-  zellij:      "/home/marco/.config/zellij/config.kdl"
-  cargo:       "/home/marco/.cargo/config"
-  wezterm:     "/home/marco/.wezterm.lua"
+  alacritty:      "/home/marco/.config/alacritty/alacritty.yml"
+  rime:           "/home/marco/.local/share/fcitx5/rime/default.custom.yaml"
+  R:              "/home/marco/.Rprofile"
+  git:            "/home/marco/.gitconfig"
+  starship:       "/home/marco/.config/starship.toml"
+  fontconfig:     "/home/marco/.config/fontconfig/fonts.conf"
+  delta:          "/home/marco/themes.gitconfig"
+  helix:          "/home/marco/.config/helix/config.toml"
+  helix_lang:     "/home/marco/.config/helix/languages.toml"
+  helix_theme:    "/home/marco/.config/helix/runtime/themes/solarized_mine.toml"
+  nushell:        "/home/marco/.config/nushell/config.nu"
+  nushell-env:    "/home/marco/.config/nushell/env.nu"
+  nushell-plugin: "/home/marco/.config/nushell/plugin.nu"
+  bat:            "/home/marco/.config/bat/config"
+  bottom:         "/home/marco/.config/bottom/bottom.toml"
+  zellij:         "/home/marco/.config/zellij/config.kdl"
+  cargo:          "/home/marco/.cargo/config"
+  wezterm:        "/home/marco/.wezterm.lua"
 }
