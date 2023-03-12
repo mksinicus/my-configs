@@ -591,6 +591,7 @@ alias chrono      = cd /home/marco/privo/chronographo
 alias code        = codium
 alias md          = mkdir # DOS!
 alias j           = just
+alias now         = date now
 alias today       = (date now | date format %F)
 alias datetime    = (date now | date format %+)
 # alias zlj         = zellij # Seems to conflict with subcommand aliases
