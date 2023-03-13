@@ -22,6 +22,8 @@ patch:
   - "Control+grave"
   "menu/page_size": 9
   "key_binder/bindings/+":
+    - {accept: "Control+Shift+1", select: .next, when: always}
+    - {accept: "Control+Shift+exclam", select: .next, when: always}
     - {accept: "Control+Shift+3", toggle: full_shape, when: always}
     - {accept: "Control+Shift+numbersign", toggle: full_shape, when: always}
     - {accept: "Control+Shift+4", toggle: simplification, when: always}

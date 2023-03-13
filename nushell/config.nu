@@ -625,7 +625,7 @@ use /home/marco/nu/.history-recent.nu *
 use /home/marco/nu/.ls-visual.nu      *
 
 # Custom completions/externs
-use /home/marco/nu/externs/helix.nu  *
+# use /home/marco/nu/externs/helix.nu  * # Subcommands ain't good for an editor
 use /home/marco/nu/externs/zellij.nu *
 use /home/marco/nu/externs/tar.nu    *
 use /home/marco/nu/externs/pijul.nu  *
