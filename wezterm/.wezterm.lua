@@ -38,7 +38,12 @@ wezterm.on('update-status', function(window, pane)
       cwd = urlDecode(cwd_uri:sub(slash))
 
       -- Handle extra long dirnames. Currently buggy?
+      -- And replace home directory with `~`
+      cwd = cwd:gsub('^/home/marco', '~')
       local basename_len = cwd:reverse():find('/')
+      if cwd == '~' then
+        basename_len = 0
+      end
       local CWD_MAX_LEN = 26
 
       -- Displays the current dir anyway

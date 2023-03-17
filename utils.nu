@@ -10,6 +10,10 @@ def move-here [cfgs] {
   }
 }
 
+def add-all [] {
+  git add .
+}
+
 def commit-update [] {
   let today = (date now | date format %F)
   git commit -m $'Update ($today)'
