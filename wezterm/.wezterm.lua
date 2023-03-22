@@ -162,9 +162,14 @@ return {
   use_fancy_tab_bar = false,
   tab_max_width = 18,
 
+  -- Update checker. Left here just in case I want to disable it
+  check_for_updates = true,
+  check_for_updates_interval_seconds = 86400,
+
   -- # Color scheme and font style
   -- color_scheme = "Solarized Light (base16)",
   color_scheme = "Solarized (light) (terminal.sexy)",
+
   colors = {
     scrollbar_thumb = '#676350',
 
@@ -200,6 +205,11 @@ return {
       },
     }
   },
+
+  -- command palette introduced in 20230320
+  command_palette_font_size = 13.8,
+  command_palette_bg_color = '#fffaea',
+  command_palette_fg_color = '#586e75',
 
   -- # Font configuration
   -- font = wezterm.font 'Sarasa Term SC Nerd',

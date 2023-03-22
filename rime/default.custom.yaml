@@ -15,6 +15,9 @@ patch:
   - schema: html_entities
   - schema: japanese
   - schema: hebrew
+  - schema: semkey
+  - schema: hebrew_classical
+  # - schema: semkey_original
   # - schema: toned_zhupin_test
   #- schema: bopomofo
   # - schema: ar_arab

@@ -10,9 +10,13 @@ def move-here [cfgs] {
   }
 }
 
-def add-all [] {
+def add-commit-push [] {
   git add .
+  commit-update
+  git push
 }
+
+alias acp = add-commit-push
 
 def commit-update [] {
   let today = (date now | date format %F)
