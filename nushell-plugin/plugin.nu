@@ -28,8 +28,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [
       [
         "String",
@@ -269,8 +267,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [
       [
         "String",
@@ -406,8 +402,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [
       [
         "String",
@@ -496,8 +490,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [
       [
         "String",
@@ -697,8 +689,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [],
     "allow_variants_without_examples": false,
     "is_filter": false,
@@ -738,8 +728,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [],
     "allow_variants_without_examples": false,
     "is_filter": false,
@@ -800,7 +788,9 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
       {
         "long": "as-table",
         "short": "t",
-        "arg": "Table",
+        "arg": {
+          "Table": []
+        },
         "required": false,
         "desc": "find table based on column header list",
         "var_id": null,
@@ -816,8 +806,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [],
     "allow_variants_without_examples": false,
     "is_filter": false,
@@ -828,7 +816,7 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
   "examples": [
     {
       "example": "http get https://phoronix.com | query web -q 'header'",
-      "description": "Retrieve all <header> elements from phoronix.com website",
+      "description": "Retrieve all `<header>` elements from phoronix.com website",
       "result": null
     },
     {
@@ -878,8 +866,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
         "default_value": null
       }
     ],
-    "input_type": "Any",
-    "output_type": "Any",
     "input_output_types": [],
     "allow_variants_without_examples": false,
     "is_filter": false,

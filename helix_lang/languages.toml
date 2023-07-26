@@ -6,6 +6,16 @@ file-types = [
   "rmd",
   "qmd"
 ]
+# [[language]]
+# name = "markdown"
+# file-types = ["md", "txt"]
+# language-server = { command = "/home/marco/bin/ltex-ls-16.0.0/bin/ltex-ls" }
+# language-server = [{ name = "ltex"}]
+# scope = "source.markdown"
+# roots = []
+
+[language-server.ltex]
+command = "/opt/ltex-ls/bin/ltex-ls"
 
 [[language]]
 name = "toml"

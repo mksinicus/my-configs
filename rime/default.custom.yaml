@@ -17,6 +17,8 @@ patch:
   - schema: hebrew
   - schema: semkey
   - schema: hebrew_classical
+  - schema: kaomoji
+  - schema: zyenpheng
   # - schema: semkey_original
   # - schema: toned_zhupin_test
   #- schema: bopomofo

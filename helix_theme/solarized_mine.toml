@@ -7,6 +7,7 @@ inherits = "solarized_light"
 "ui.linenr" = { bg = "base02" }
 "ui.linenr.selected" = { fg = "yellow", bg = "base03", modifiers = ["bold"] }
 "ui.virtual.indent-guide" = { fg = "base015" }
+"ui.virtual.wrap" = { fg = "base015" }
 "ui.virtual.ruler" = { bg = "base0175" }
 "ui.cursor.match" = { fg = "base03", bg = "base015" }
 "ui.statusline" = { fg = "base03", bg = "base0", modifiers = ["bold"] }

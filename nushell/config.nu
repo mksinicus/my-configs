@@ -146,6 +146,10 @@ let-env config = {
     format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
   }
   color_config: $light_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  datetime_format: {
+    normal: "%F %T %Z" # shows up in displays of variables or other datetime's outside of tables
+    # table: "%F %T %Z" # generally shows up in tabular outputs such as ls. commenting this out will change it to the default human readable datetime format
+  }
   use_grid_icons: true
   footer_mode: "25" # always, never, number_of_rows, auto
   float_precision: 2
@@ -156,18 +160,18 @@ let-env config = {
   show_banner: false # true or false to enable or disable the banner
   render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
   hooks: {
-    pre_prompt: [{
-      $nothing  # replace with source code to run before the prompt is shown
-    }]
-    pre_execution: [{
-      $nothing  # replace with source code to run before the repl input is run
-    }]
+    pre_prompt: [
+      # {|| $nothing}  # replace with source code to run before the prompt is shown
+    ]
+    pre_execution: [
+      # {|| $nothing}  # replace with source code to run before the repl input is run
+    ]
     env_change: {
       PWD: [{|before, after|
         $nothing  # replace with source code to run if the PWD environment is different since the last repl input
       }]
     }
-    display_output: {
+    display_output: {||
       if (term size).columns >= 100 { table -e } else { table }
     }
   }
@@ -431,16 +435,16 @@ let-env RUSTUP_UPDATE_ROOT = "https://mirrors.ustc.edu.cn/rust-static/rustup"
 ## More personal configurations
 # PATH
 let-env PATH = (
-  $env.PATH |
-  prepend '/home/marco/.cargo/bin' |
-  # prepend '/home/marco/bin' |
-  # prepend '/home/marco/bin-flatpak' |
-  prepend '/home/marco/sh' |
-  prepend '/home/marco/nu' |
-  append '/home/marco/.local/share/r-miniconda/bin' | # My conda's here
-  # append '/home/marco/bin/node-v18.12.1-linux-x64/bin/' |
-  append '/home/marco/.wasmer/bin' |
-  append '/home/marco/.wabt/'
+  $env.PATH
+  | prepend '/home/marco/.cargo/bin'
+  | # prepend '/home/marco/bin'
+  | # prepend '/home/marco/bin-flatpak'
+  | prepend '/home/marco/sh'
+  | prepend '/home/marco/nu/execs'
+  | append '/home/marco/.local/share/r-miniconda/bin' | # My conda's here
+  # append '/home/marco/bin/node-v18.12.1-linux-x64/bin/'
+  | append '/home/marco/.wasmer/bin'
+  | append '/home/marco/.wabt/'
 )
 let-env XDG_DATA_DIRS = (
   $env.XDG_DATA_DIRS
@@ -452,6 +456,9 @@ let-env XDG_DATA_DIRS = (
 let-env EDITOR = "hx"
 # let-env VISUAL = "alacritty -t Helix -e hx"
 let-env VISUAL = "hx"
+# HELPER
+let-env NU_HELPER = "tldr"
+# export use std help
 
 ## aliases
 # applications aliases/shorthands
@@ -464,24 +471,26 @@ alias ghx         = alacritty -t Helix -e hx
 alias lua         = lua5.4
 alias unzipgbk    = unzip -O cp936
 alias unzipjis    = unzip -O shift-jis
+# alias zq          = zoxide query
+alias zqi         = zoxide query -i
+alias editor      = ^($env.EDITOR) # Let's keep this internal
 
 # aliases for pijul; should really be in externs
-alias "pj switch" = pj channel switch
-alias "pj logch"  = pj log --channel
-alias "pj amend"  = pj record --amend
+# alias "pj switch" = pj channel switch
+# alias "pj logch"  = pj log --channel
+# alias "pj amend"  = pj record --amend
 # "
 
 # shell command shorthands
 alias lsla        = ls -la
+alias lsl         = ls -l
 alias lsa         = ls -a
-alias lsr         = ls -a **/*  # recursive ls
 alias md          = mkdir # DOS-ish
 alias rmt         = rm -t
 alias now         = date now
-alias today       = (date now | date format %F)
-alias datetime    = (date now | date format %+)
 alias view-source = view source # I like it, reminds me of the view-source protocol
-alias c           = clear
+# alias c           = clear
+alias cls         = clear
 
 # utilities
 alias rimecfg     = cd /home/marco/.local/share/fcitx5/rime
@@ -490,7 +499,23 @@ alias chrono      = cd /home/marco/privo/chronographo
 # Simple closures
 # P.ex. `ls | recent 10min`
 alias recent   = do {|x| where modified > (date now) - $x}
+alias get-extension = do {insert extension {|c| $c.name | path parse | get extension}}
 alias dehuman  = do {update modified {|c| $c.modified | date format %+}}
+alias today    = do {date now | date format %F}
+alias datetime = do {date now | date format %+}
+alias hhmmss   = do {date now | date format %H:%M:%S}
+alias zq       = do {|x| zoxide query $x | str trim}
+# alias negate   = do {|| $in | (not $in)} # don't know why, it crashes.
+# Let's use a more stable function approach
+# def negate [] {not $in}
+# Let's move them to a module file! But for now we can have it like this:
+alias negate = collect {|x| not $x}
+# alias c        = collect --keep-env {|x| cd $x; ls} # This can't take postpositional arguments
+
+export def-env c [path: path] {
+  cd $path
+  ls
+}
 
 
 # While they are inside $env.NU_LIB_DIRS, no need to write full path
@@ -500,13 +525,33 @@ use .into-hex.nu       *
 use .clip.nu           *
 use .math-is-prime.nu  *
 use .into-utf8.nu      *
-use .facienda.nu       *
 use .url-decode.nu     *
 use .move-recent.nu    *
 use .renamer.nu        *
 use .entity.nu         *
 use .history-recent.nu *
 use .ls-visual.nu      *
+use .lsr.nu  *
+use .rmd-new.nu *
+use .m3u82mp4.nu *
+use utils.nu *
+
+use qmv.nu
+use touchmod.nu
+
+## Utilities that require specified env variables
+use .libris.nu *
+let-env LIBRIS_WD = "~/.libris/"
+use .facienda.nu *
+let-env FACIENDA_WD = "~/.facienda/"
+use .habitu.nu   *
+let-env HABITU_WD = "~/.habitu/"
+use .quotidie.nu *
+let-env JOURNAL_WD = "~/.journal/"
+use .journal.nu *
+
+# My modules
+use .nota.nu *
 
 # Custom completions/externs
 # use /home/marco/nu/externs/helix.nu  * # Subcommands ain't good for an editor

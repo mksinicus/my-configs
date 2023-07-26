@@ -157,8 +157,21 @@ end)
 --   end
 -- )
 
+global_font_size = 12.9
+global_font_family = wezterm.font_with_fallback {
+  'Iosevka Slab',
+  'Sarasa Term SC Nerd',
+  'STIX Two Math',
+  'HanaMinA',
+  'HanaMinB',
+  "Noto Sans Devanagari",
+  "Noto Sans Arabic",
+  "Noto Sans Hebrew",
+  -- 'Unifont',
+}
+
 return {
-  window_background_opacity = 0.93,
+  window_background_opacity = 0.95,
   use_fancy_tab_bar = false,
   tab_max_width = 18,
 
@@ -207,29 +220,17 @@ return {
   },
 
   -- command palette introduced in 20230320
-  command_palette_font_size = 13.8,
+  command_palette_font_size = global_font_size,
   command_palette_bg_color = '#fffaea',
   command_palette_fg_color = '#586e75',
 
   -- # Font configuration
   -- font = wezterm.font 'Sarasa Term SC Nerd',
-  font = wezterm.font_with_fallback {
-    'Sarasa Term SC Nerd',
-    'STIX Two Math',
-    'HanaMinB',
-    "Noto Sans Devanagari",
-    "Noto Sans Arabic",
-    "Noto Sans Hebrew",
-    -- 'Unifont',
-  },
-  font_size = 13.8, -- ugly but it's optimal
+  font = global_font_family,
+  font_size = global_font_size, -- ugly but it's optimal
   -- line_height = 1.08,
   window_frame = {
-    font = wezterm.font_with_fallback {
-      'Sarasa Term SC Nerd',
-      "Noto Sans CJK SC",
-      -- 'STIX Two Text'
-    },
+    font = global_font_family,
     -- font_rules = {
     --   {
     --     intensity = 'Bold',
@@ -239,7 +240,7 @@ return {
     --     ),
     --   }
     -- },
-    font_size = 13.8,
+    font_size = global_font_size,
     -- Taken from Zellij, yay!
     
     active_titlebar_bg = '#073642',

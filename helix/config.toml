@@ -5,7 +5,11 @@ rulers = [80,]
 line-number = "relative"
 middle-click-paste = false
 # Without explicit designation, it doesn't source the global config by default
-shell = ["nu", "--config '/home/marco/.config/nushell/config.nu'", "-c"]
+shell = [
+  "nu", "--config '/home/marco/.config/nushell/config.nu'",
+  "--env-config '/home/marco/.config/nushell/env.nu'",
+  "-c"
+]
 bufferline = "multiple"
 scroll-lines = 4
 cursorline = true
@@ -13,11 +17,23 @@ color-modes = true
 
 [editor.cursor-shape]
 normal = "block"
-insert = "block"
+insert = "bar"
 select = "block"
 
 [editor.whitespace]
 render = "all"
+
+# Taken from <https://blog.getreu.net/20220828-tp-note-new8/>
+[editor.statusline]
+left = ["mode", "spacer", "spinner", "file-name", "file-modification-indicator"]
+# center = ["file-name"]
+right = ["diagnostics", "version-control", "selections", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
+
+
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = true
+wrap-indicator = ""
 
 [editor.indent-guides]
 render = true
@@ -27,19 +43,30 @@ skip-levels = 1
 # For keymap reference, see <https://docs.helix-editor.com/keymap.html>
 
 [keys.normal]
-"C-S-c" = "no_op"
+"C-S-c" = "no_op" # Avoid mingling with shell or terminal emulator
 "A-w" = ":w"
+# "C-]" = ":w" # Why doesn't it work?
 "ret" = ["open_below", "collapse_selection", "normal_mode"]
-"S-ret" = ["open_above", "collapse_selection", "normal_mode"]
+"S-ret" = ["open_above", "collapse_selection", "normal_mode"] # Nonfunctional
 
+[keys.select]
+"A-q" = "normal_mode"
+
+# Let's Emacs this.
 [keys.insert]
-"A-q" = "normal_mode" # Maps Alt-X to enter normal mode
-# "A-w" = ["normal_mode", ":w", "insert_mode"]
+"A-q" = "normal_mode"
+"A-Q" = "normal_mode" # With caps lock on
+# "A-w" = ["normal_mode", ":w", "insert_mode"] # Nonfunctional, seems like a bug
 "A-;" = "collapse_selection"
 "C-p" = "move_line_up"
 "C-n" = "move_line_down"
 "C-f" = "move_char_right"
 "C-b" = "move_char_left"
-
-[keys.select]
-"A-q" = "normal_mode"
+"A-f" = ["move_next_word_start", "move_char_right", "collapse_selection"]
+"A-b" = ["move_prev_word_start", "collapse_selection"]
+"C-a" = "goto_line_start"
+"C-e" = ["goto_line_end", "move_char_right"]
+# "C-m" = "open_below" # Why doesn't it work??
+"C-j" = "open_below"
+# j = { k = "normal_mode" } # Some people map `jk` to exit insert mode. I don't.
+"C-{" = "no_op" # I use it elsewhere... But notworking! Neither does `C-S-[`.

@@ -5,4 +5,5 @@ replace-with = 'ustc'
 registry = "http://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
 
 [source.ustc]
+# registry = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"
 registry = "git://mirrors.ustc.edu.cn/crates.io-index"
