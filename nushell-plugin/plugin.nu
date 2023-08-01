@@ -7,7 +7,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
     "required_positional": [],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -255,7 +254,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
     "required_positional": [],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -390,7 +388,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
     "required_positional": [],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -478,7 +475,6 @@ register /home/marco/.cargo/bin/nu_plugin_formats  {
     "required_positional": [],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -677,7 +673,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
     "required_positional": [],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -716,7 +711,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
     ],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -747,7 +741,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
     "required_positional": [],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",
@@ -854,7 +847,6 @@ register /home/marco/.cargo/bin/nu_plugin_query  {
     ],
     "optional_positional": [],
     "rest_positional": null,
-    "vectorizes_over_list": false,
     "named": [
       {
         "long": "help",

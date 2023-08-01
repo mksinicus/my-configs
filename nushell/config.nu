@@ -430,13 +430,14 @@ $env.config = {
             mode: [emacs, vi_normal, vi_insert]
             event: { send: clearscreen }
         }
-        {
-            name: search_history
-            modifier: control
-            keycode: char_r
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: searchhistory }
-        }
+        # why this? there's a `history_menu` above.
+        # {
+        #     name: search_history
+        #     modifier: control
+        #     keycode: char_r
+        #     mode: [emacs, vi_normal, vi_insert]
+        #     event: { send: searchhistory }
+        # }
         {
             name: open_command_editor
             modifier: control
@@ -813,6 +814,21 @@ source /home/marco/.cache/starship/init.nu
 
 # zoxide init
 source /home/marco/nu/.zoxide.nu
+
+# Broot
+def-env br [
+  --args (-a): string
+] {
+  let cmd_file = (^mktemp | str trim)
+  if ($args | is-empty) {
+    ^broot --outcmd $cmd_file
+  } else {
+    ^broot $args --outcmd $cmd_file
+  }
+  let-env cmd = ((open $cmd_file) | str trim)
+  ^rm $cmd_file
+  cd ($env.cmd | str replace "cd" "" | str trim)
+}
 
 # While they are inside $env.NU_LIB_DIRS, no need to write full path
 # Utilities that require import
