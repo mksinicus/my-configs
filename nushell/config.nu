@@ -834,6 +834,7 @@ def-env br [
 use clip.nu
 use renamer.nu; alias rnm = renamer
 use entity.nu; alias ent = entity
+use unicode.nu
 use rmd-new.nu
 use m3u82mp4.nu
 use mdmake.nu
