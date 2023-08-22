@@ -825,47 +825,33 @@ def-env br [
   } else {
     ^broot $args --outcmd $cmd_file
   }
-  let-env cmd = ((open $cmd_file) | str trim)
+  $env.cmd = ((open $cmd_file) | str trim)
   ^rm $cmd_file
   cd ($env.cmd | str replace "cd" "" | str trim)
 }
 
 # While they are inside $env.NU_LIB_DIRS, no need to write full path
-# Utilities that require import
-use mdcd.nu
-use .into-hex.nu       *
-use .clip.nu           *
-use .math-is-prime.nu  *
-use .into-utf8.nu      *
-use .url-decode.nu     *
-use .move-recent.nu    *
-use .renamer.nu        *
-use .entity.nu         *
-use .history-recent.nu *
-use .ls-visual.nu      *
-use .lsr.nu  *
-use .rmd-new.nu *
-use .m3u82mp4.nu *
-use utils.nu *
+use clip.nu
+use renamer.nu; alias rnm = renamer
+use entity.nu; alias ent = entity
+use rmd-new.nu
+use m3u82mp4.nu
+use mdmake.nu
+use video2audio.nu; alias v2a = video2audio
+use my2fa.nu
+
+# switched to dir-based module
+use utils/ *
 
 use qmv.nu
-use touchmod.nu
 
 ## Utilities that require specified env variables
-use .libris.nu *
-$env.LIBRIS_WD = "~/.libris/"
-use .facienda.nu *
-$env.FACIENDA_WD = "~/.facienda/"
-use .habitu.nu   *
-$env.HABITU_WD = "~/.habitu/"
-use .quotidie.nu *
-$env.JOURNAL_WD = "~/.journal/"
-use .journal.nu *
 $env.CFG_REPO = ($env.HOME | path join gitrepo my-configs)
 use cfg.nu
 
 # My modules
-use .nota.nu *
+use nota.nu
+alias nt = nota
 
 # Custom completions/externs
 # use /home/marco/nu/externs/helix.nu  * # Subcommands ain't good for an editor

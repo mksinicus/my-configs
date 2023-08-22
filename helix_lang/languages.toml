@@ -4,8 +4,11 @@ file-types = [
   "md",
   "markdown",
   "rmd",
-  "qmd"
+  "qmd",
+  "dj", # djot... for now.
 ]
+language-servers = []
+
 # [[language]]
 # name = "markdown"
 # file-types = ["md", "txt"]
@@ -19,26 +22,27 @@ command = "/opt/ltex-ls/bin/ltex-ls"
 
 [[language]]
 name = "toml"
-language-server = { command = "foobarfoobar" } # I hate the lag on exit
+# language-server = { command = "foobarfoobar" } # I hate the lag on exit
+language-servers = []
 
 [[language]]
 name = "bash"
-language-server = { command = "foobarfoobar" }
+language-servers = []
 
-[[language]]
-name = "css"
-language-server = { command = "css-languageserver", args = ["--stdio"]}
+# [[language]]
+# name = "css"
+# language-server = { command = "css-languageserver", args = ["--stdio"]}
 
-[[language]]
-name = "rhai"
-scope = "source.rhai"
-injection-regex = "^rhai$"
-file-types = ["rhai"]
-roots = ["Cargo.lock"]
-comment-token = "//"
-indent = { tab-width = 4, unit = " " }
-language-server = { command = "rhai", args = ["lsp", "stdio"] }
-grammar = "rhai"
+# [[language]]
+# name = "rhai"
+# scope = "source.rhai"
+# injection-regex = "^rhai$"
+# file-types = ["rhai"]
+# roots = ["Cargo.lock"]
+# comment-token = "//"
+# indent = { tab-width = 4, unit = " " }
+# language-server = { command = "rhai", args = ["lsp", "stdio"] }
+# grammar = "rhai"
 # formatter = { command = "rhai", args = ["fmt"] }
 
 [[language]]
