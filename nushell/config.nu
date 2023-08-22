@@ -830,6 +830,35 @@ def-env br [
   cd ($env.cmd | str replace "cd" "" | str trim)
 }
 
+## aliases
+# applications aliases/shorthands
+alias python    = python3
+alias grep    = rg
+alias code    = codium
+alias j       = just # I'd rather use Nushell as my build system tho...
+alias tarxz     = tar -c -I 'xz -6 -T0' -f
+alias ghx     = alacritty -t Helix -e hx
+alias lua     = lua5.4
+alias unzip-gbk  = unzip -O cp936
+alias unzip-jis  = unzip -O shift-jis
+# alias zq      = zoxide query
+alias zqi     = zoxide query -i
+alias editor    = ^($env.EDITOR) # Let's keep this internal
+
+# shell command shorthands
+alias ll      = ls -la
+alias lsl     = ls -l
+alias lsa     = ls -a
+alias md      = mkdir # DOS-ish
+alias rmt     = rm -t
+alias now     = date now
+alias view-source = view source # I like it, reminds me of the view-source protocol
+alias cls     = clear
+
+# special use
+alias uu = overlay use -p u.nu
+
+## modules
 # While they are inside $env.NU_LIB_DIRS, no need to write full path
 use clip.nu
 use renamer.nu; alias rnm = renamer

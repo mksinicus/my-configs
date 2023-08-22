@@ -79,32 +79,6 @@ $env.NU_PLUGIN_DIRS = [
   ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-
-## aliases
-# applications aliases/shorthands
-alias python    = python3
-alias grep    = rg
-alias code    = codium
-alias j       = just # I'd rather use Nushell as my build system tho...
-alias tarxz     = tar -c -I 'xz -6 -T0' -f
-alias ghx     = alacritty -t Helix -e hx
-alias lua     = lua5.4
-alias unzipgbk  = unzip -O cp936
-alias unzipjis  = unzip -O shift-jis
-# alias zq      = zoxide query
-alias zqi     = zoxide query -i
-alias editor    = ^($env.EDITOR) # Let's keep this internal
-
-# shell command shorthands
-alias ll      = ls -la
-alias lsl     = ls -l
-alias lsa     = ls -a
-alias md      = mkdir # DOS-ish
-alias rmt     = rm -t
-alias now     = date now
-alias view-source = view source # I like it, reminds me of the view-source protocol
-alias cls     = clear
-
 # Don't put `use` import of custom modules here!
 # The $env.NU_LIB_DIRS will only function *after* this file is fully loaded.
 # Do it in `config.nu`.
