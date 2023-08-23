@@ -857,6 +857,7 @@ alias cls     = clear
 
 # special use
 alias uu = overlay use -p u.nu
+alias uh = overlay hide u
 
 ## modules
 # While they are inside $env.NU_LIB_DIRS, no need to write full path
