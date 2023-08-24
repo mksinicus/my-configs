@@ -871,6 +871,7 @@ use m3u82mp4.nu
 use mdmake.nu
 use video2audio.nu; alias v2a = video2audio
 use my2fa.nu
+use eval.nu
 
 # switched to dir-based module
 use utils/ *

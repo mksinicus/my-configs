@@ -6,9 +6,10 @@ line-number = "relative"
 middle-click-paste = false
 # Without explicit designation, it doesn't source the global config by default
 shell = [
-  "nu", "--config '/home/marco/.config/nushell/config.nu'",
-  "--env-config '/home/marco/.config/nushell/env.nu'",
-  "-c"
+  "nu", "--config '~/.config/nushell/config.nu'",
+  "--env-config '~/.config/nushell/env.nu'",
+  "--stdin",
+  "--commands",
 ]
 bufferline = "multiple"
 scroll-lines = 4
@@ -48,6 +49,9 @@ skip-levels = 1
 # "C-]" = ":w" # Why doesn't it work?
 "ret" = ["open_below", "collapse_selection", "normal_mode"]
 "S-ret" = ["open_above", "collapse_selection", "normal_mode"] # Nonfunctional
+
+[keys.normal."space"]
+"e" = ":pipe eval"
 
 [keys.select]
 "A-q" = "normal_mode"
