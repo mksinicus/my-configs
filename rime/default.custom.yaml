@@ -20,6 +20,7 @@ patch:
   - schema: kaomoji
   - schema: zyenpheng
   - schema: greek_polytonic
+  - schema: occidental
   # - schema: semkey_original
   # - schema: toned_zhupin_test
   #- schema: bopomofo

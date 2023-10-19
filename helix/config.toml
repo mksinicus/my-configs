@@ -46,6 +46,7 @@ skip-levels = 1
 [keys.normal]
 "C-S-c" = "no_op" # Avoid mingling with shell or terminal emulator
 "A-w" = ":w"
+"A-r" = ":reload"
 # "C-]" = ":w" # Why doesn't it work?
 "ret" = ["open_below", "collapse_selection", "normal_mode"]
 "S-ret" = ["open_above", "collapse_selection", "normal_mode"] # Nonfunctional

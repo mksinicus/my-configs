@@ -193,9 +193,10 @@ $env.config = {
         always_trash: false # always act as if -t was given. Can be overridden with -p
     }
 
-    cd: {
-        abbreviations: true # allows `cd s/o/f` to expand to `cd some/other/folder`
-    }
+    # deprecated since 0.86
+    # cd: {
+    #     abbreviations: true # allows `cd s/o/f` to expand to `cd some/other/folder`
+    # }
 
     table: {
         mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
@@ -845,6 +846,7 @@ alias unzip-jis  = unzip -O shift-jis
 # alias zq      = zoxide query
 alias zqi     = zoxide query -i
 alias editor    = ^($env.EDITOR) # Let's keep this internal
+alias r = radian
 
 # shell command shorthands
 alias ll      = ls -la
@@ -863,6 +865,7 @@ alias uh = overlay hide u
 ## modules
 # While they are inside $env.NU_LIB_DIRS, no need to write full path
 use clip.nu
+use paste.nu
 use renamer.nu; alias rnm = renamer
 use entity.nu; alias ent = entity
 use unicode.nu
