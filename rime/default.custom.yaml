@@ -7,7 +7,6 @@ patch:
   - schema: devanagari
   - schema: ancient_egyptian_translit
   - schema: jyut6ping3
-  - schema: latin_extended
   - schema: greek
   - schema: tupa
   - schema: kyril_international
@@ -21,10 +20,6 @@ patch:
   - schema: zyenpheng
   - schema: greek_polytonic
   - schema: occidental
-  # - schema: semkey_original
-  # - schema: toned_zhupin_test
-  #- schema: bopomofo
-  # - schema: ar_arab
   "switcher/hotkeys":
   - "Control+grave"
   "menu/page_size": 9
@@ -39,4 +34,3 @@ patch:
     - {accept: "Control+Shift+percent", toggle: ascii_punct, when: always}
   #   - {accept: "Shift+space", toggle: full_shape, when: always}
   #   - {accept: "Control+Shift", select: .next, when: always}
-# }
