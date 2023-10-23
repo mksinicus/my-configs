@@ -812,10 +812,13 @@ $env.config = {
 }
 
 # starship init
-source /home/marco/.cache/starship/init.nu
+source ('~' | path join .cache starship init.nu)
 
 # zoxide init
-source /home/marco/nu/.zoxide.nu
+source ('~' | path join nu .zoxide.nu)
+
+# backup prompt
+source ('~' | path join nu .backup.nu)
 
 # Broot
 def-env br [
@@ -849,9 +852,10 @@ alias editor    = ^($env.EDITOR) # Let's keep this internal
 alias r = radian
 
 # shell command shorthands
+alias l       = ls
 alias ll      = ls -la
-alias lsl     = ls -l
-alias lsa     = ls -a
+# alias lsl     = ls -l
+# alias lsa     = ls -a
 alias md      = mkdir # DOS-ish
 alias rmt     = rm -t
 alias now     = date now
