@@ -1,3 +1,10 @@
+[language-server.nu-lsp]
+command = "nu"
+args = [
+  # "--stdin",
+  "--lsp"
+]
+
 [[language]]
 name = "markdown"
 file-types = [
@@ -53,42 +60,71 @@ auto-format = false
 # name = "rhai"
 # source = { git = "https://github.com/tree-sitter/tree-sitter-rust", rev = "0431a2c60828731f27491ee9fdefe25e250ce9c9"}
 
-[[language]]
-name = "rust"
+# [[language]]
+# name = "json"
+# auto-format = false
+
+# [[language]]
+# name = "rust"
+
+# [language.debugger]
+# name = "rust-lldb"
+# transport = "stdio"
+# command = "rust-lldb"
+
+# [[language.debugger.templates]]
+# name = "binary"
+# request = "launch"
+# completion = [ { name = "binary", completion = "filename" } ]
+# args = { program = "{0}" }
+
+# [[language.debugger.templates]]
+# name = "binary (terminal)"
+# request = "launch"
+# completion = [ { name = "binary", completion = "filename" } ]
+# args = { program = "{0}", runInTerminal = true }
+
+# [[language.debugger.templates]]
+# name = "attach"
+# request = "attach"
+# completion = [ "pid" ]
+# args = { pid = "{0}" }
+
+# [[language.debugger.templates]]
+# name = "gdbserver attach"
+# request = "attach"
+# completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
+# args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
+
+# [[language]]
+# name = "nushell"
+# scope = "source.nushell"
+# file-types = [
+#   'nushell',
+# ]
+# roots = []
+# comment-token = "#"
+# indent = { tab-width = 2, unit = "  " }
+
+# [[grammar]]
+# name = "nushell"
+# source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "main" }
+
+# [[grammar]]
+# name = "nu"
+# source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "58bb7da171a1c17d9edb0ed26edbd43ad1ef4318" }
 
 [[language]]
-name = "json"
-auto-format = false
+name = "nu"
+language-servers = [
+  { name = "nu-lsp", only-features = [ "completion", "document-highlight", "diagnostics" ] }
+  # { name = "nu-lsp" }
+]
 
-[language.debugger]
-name = "rust-lldb"
-transport = "stdio"
-command = "rust-lldb"
-
-[[language.debugger.templates]]
-name = "binary"
-request = "launch"
-completion = [ { name = "binary", completion = "filename" } ]
-args = { program = "{0}" }
-
-[[language.debugger.templates]]
-name = "binary (terminal)"
-request = "launch"
-completion = [ { name = "binary", completion = "filename" } ]
-args = { program = "{0}", runInTerminal = true }
-
-[[language.debugger.templates]]
-name = "attach"
-request = "attach"
-completion = [ "pid" ]
-args = { pid = "{0}" }
-
-[[language.debugger.templates]]
-name = "gdbserver attach"
-request = "attach"
-completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
-args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
 
 [[grammar]]
 name = "nu"
-source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "786689b0562b9799ce53e824cb45a1a2a04dc673" }
+scope = "source.nu"
+injection-regex = "nu"
+file-types = ["nu"]
+source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "main" }

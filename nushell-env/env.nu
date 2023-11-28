@@ -91,15 +91,17 @@ use std 'path add'
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 path add [
-  ($env.HOME | path join neovim bin)
-  ($env.HOME | path join bin zig-linux)
-  ($env.HOME | path join .cargo bin)
-  ($env.HOME | path join bin)
-  ($env.HOME | path join bin-flatpak)
-  ($env.HOME | path join sh)
-  ($env.HOME | path join nu bin)
-  ($env.HOME | path join .wasmer bin)
-  ($env.HOME | path join .wabt)
+  ($env.HOME | path join 'neovim' 'bin')
+  ($env.HOME | path join 'bin' 'zig-linux')
+  ($env.HOME | path join '.cargo' 'bin')
+  ($env.HOME | path join 'bin')
+  ($env.HOME | path join 'bin-flatpak')
+  ($env.HOME | path join 'sh')
+  ($env.HOME | path join 'nu' 'bin')
+  ($env.HOME | path join '.wasmer' 'bin')
+  ($env.HOME | path join '.wabt')
+  ($env.HOME | path join 'bin' 'gradle-8.4' 'bin')
+  # ($env.HOME | path join 'android-sdk' 'cmdline-tools' 'tools' 'bin')
   # ($env.HOME | path join bin node-v18.12.1-linux-x64 bin)
 ]
 
@@ -118,6 +120,10 @@ load-env {
   # Rust toolchain mirror
   RUSTUP_DIST_SERVER: "https://mirrors.ustc.edu.cn/rust-static"
   RUSTUP_UPDATE_ROOT: "https://mirrors.ustc.edu.cn/rust-static/rustup"
+  # Android SDK
+  # ANDROID_HOME: "/usr/lib/android-sdk"
+  ANDROID_HOME: ($env.HOME | path join "android-sdk")
+
   # EDITOR
   EDITOR: "hx"
   # VISUAL: "alacritty -t Helix -e hx"

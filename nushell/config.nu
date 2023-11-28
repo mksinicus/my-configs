@@ -821,7 +821,7 @@ source ('~' | path join nu .zoxide.nu)
 source ('~' | path join nu .backup.nu)
 
 # Broot
-def-env br [
+def --env br [
   --args (-a): string
 ] {
   let cmd_file = (^mktemp | str trim)
@@ -850,6 +850,7 @@ alias unzip-jis  = unzip -O shift-jis
 alias zqi     = zoxide query -i
 alias editor    = ^($env.EDITOR) # Let's keep this internal
 alias r = radian
+alias pc = proxychains
 
 # shell command shorthands
 alias l       = ls
@@ -861,6 +862,7 @@ alias rmt     = rm -t
 alias now     = date now
 alias view-source = view source # I like it, reminds me of the view-source protocol
 alias cls     = clear
+alias ":q" = exit
 
 # special use
 alias uu = overlay use -p u.nu
@@ -879,6 +881,7 @@ use mdmake.nu
 use video2audio.nu; alias v2a = video2audio
 use my2fa.nu
 use eval.nu
+use anki-make.nu
 
 # switched to dir-based module
 use utils/ *
