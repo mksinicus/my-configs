@@ -837,20 +837,20 @@ def --env br [
 
 ## aliases
 # applications aliases/shorthands
-alias python    = python3
-alias grep    = rg
-alias code    = codium
-alias j       = just # I'd rather use Nushell as my build system tho...
-alias tarxz     = tar -c -I 'xz -6 -T0' -f
-alias ghx     = alacritty -t Helix -e hx
-alias lua     = lua5.4
-alias unzip-gbk  = unzip -O cp936
-alias unzip-jis  = unzip -O shift-jis
-# alias zq      = zoxide query
-alias zqi     = zoxide query -i
+alias python    = ^python3
+alias grep    = ^rg
+alias code    = ^codium
+alias j       = ^just # I'd rather use Nushell as my build system tho...
+alias tarxz     = ^tar -c -I 'xz -6 -T0' -f
+alias ghx     = ^alacritty -t Helix -e hx
+alias lua     = ^lua5.4
+alias unzip-gbk  = ^unzip -O cp936
+alias unzip-jis  = ^unzip -O shift-jis
+# alias zq      = ^zoxide query
+alias zqi     = ^zoxide query -i
 alias editor    = ^($env.EDITOR) # Let's keep this internal
-alias r = radian
-alias pc = proxychains
+alias r = ^radian
+alias pc = ^proxychains
 
 # shell command shorthands
 alias l       = ls

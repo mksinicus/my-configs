@@ -124,7 +124,4 @@ language-servers = [
 
 [[grammar]]
 name = "nu"
-scope = "source.nu"
-injection-regex = "nu"
-file-types = ["nu"]
 source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "main" }
