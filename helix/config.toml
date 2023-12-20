@@ -60,6 +60,8 @@ skip-levels = 1
 # Let's Emacs this.
 [keys.insert]
 "A-q" = "normal_mode"
+# "A-w" = ["normal_mode", ":w"]
+"A-w" = ":w"
 "A-Q" = "normal_mode" # With caps lock on
 # "A-w" = ["normal_mode", ":w", "insert_mode"] # Nonfunctional, seems like a bug
 "A-;" = "collapse_selection"

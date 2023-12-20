@@ -22,5 +22,6 @@ export def main [] {
       file: "~/.local/share/fcitx5/rime/default.custom.yaml" 
       action: {|| cd ~/.local/share/fcitx5/rime}
     }
+    proxychains: "/etc/proxychains.conf"
   }
 }

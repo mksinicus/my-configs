@@ -10,11 +10,18 @@ name = "markdown"
 file-types = [
   "md",
   "markdown",
-  "rmd",
-  "qmd",
   "dj", # djot... for now.
 ]
 language-servers = []
+
+[[language]]
+name = "rmarkdown"
+file-types = [
+  "Rmd",
+  "Rmarkdown",
+  "rmd",
+  "qmd"
+]
 
 # [[language]]
 # name = "markdown"
@@ -96,20 +103,6 @@ auto-format = false
 # completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
 # args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
 
-# [[language]]
-# name = "nushell"
-# scope = "source.nushell"
-# file-types = [
-#   'nushell',
-# ]
-# roots = []
-# comment-token = "#"
-# indent = { tab-width = 2, unit = "  " }
-
-# [[grammar]]
-# name = "nushell"
-# source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "main" }
-
 # [[grammar]]
 # name = "nu"
 # source = { git = "https://github.com/nushell/tree-sitter-nu", rev = "58bb7da171a1c17d9edb0ed26edbd43ad1ef4318" }
@@ -117,8 +110,8 @@ auto-format = false
 [[language]]
 name = "nu"
 language-servers = [
-  { name = "nu-lsp", only-features = [ "completion", "document-highlight", "diagnostics" ] }
-  # { name = "nu-lsp" }
+  # { name = "nu-lsp", only-features = [ "completion", "document-highlight", "diagnostics" ] }
+  { name = "nu-lsp" }
 ]
 
 
