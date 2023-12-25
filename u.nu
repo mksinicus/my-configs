@@ -21,7 +21,7 @@ export def acp [] {
     _ => {break-acp}
   }
   git add .
-  git commit -m (date now | format date %F) -e # Force edit commit message
+  git commit -m $'Update (date now | format date %F)' # -e # Force edit commit message
   git push
 }
 
