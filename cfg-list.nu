@@ -13,6 +13,7 @@ export def main [] {
     nushell:        "~/.config/nushell/config.nu"
     nushell-env:    "~/.config/nushell/env.nu"
     nushell-plugin: "~/.config/nushell/plugin.nu"
+    nushell-def:    "~/nu/definitions.nu"
     bat:            "~/.config/bat/config"
     bottom:         "~/.config/bottom/bottom.toml"
     zellij:         "~/.config/zellij/config.kdl"
