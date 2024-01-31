@@ -22,6 +22,7 @@ file-types = [
   "rmd",
   "qmd"
 ]
+comment-token = "#"
 
 # [[language]]
 # name = "markdown"

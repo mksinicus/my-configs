@@ -21,42 +21,51 @@ wezterm.on('update-status', function(window, pane)
   -- shell is using OSC 7 on the remote host.
   local cwd_uri = pane:get_current_working_dir()
   if cwd_uri then
-    cwd_uri = cwd_uri:sub(8)
-    local slash = cwd_uri:find '/'
     local cwd = ''
     local hostname = ''
-    if slash then
-      hostname = cwd_uri:sub(1, slash - 1)
-      -- Remove the domain name portion of the hostname
-      local dot = hostname:find '[.]'
-      if dot then
-        hostname = hostname:sub(1, dot - 1)
-      end
-      -- and extract the cwd from the uri
-      -- cwd = cwd_uri:sub(slash)
-      -- Handle the url-encoded uri
-      cwd = urlDecode(cwd_uri:sub(slash))
 
-      -- Handle extra long dirnames. Currently buggy?
-      -- And replace home directory with `~`
-      cwd = cwd:gsub('^/home/marco', '~')
-      local basename_len = cwd:reverse():find('/')
-      if cwd == '~' then
-        basename_len = 0
-      end
-      local CWD_MAX_LEN = 26
+    if type(cwd_uri) == 'userdata' then
+      -- Running on a newer version of wezterm and we have
+      -- a URL object here, making this simple!
 
-      -- Displays the current dir anyway
-      if basename_len > CWD_MAX_LEN then
-        -- 'Tis buggy
-        -- cwd = '...' .. wezterm.truncate_left(cwd, #cwd - basename_len + 2)
-        cwd = '...' .. cwd:sub(#cwd - basename_len + 1)
-      -- Truncate, based on max length
-      elseif #cwd > CWD_MAX_LEN then
-        -- cwd = cwd:reverse():sub(slash)
-        cwd = wezterm.truncate_left(cwd, CWD_MAX_LEN)
-        local slash = cwd:find '/'
-        cwd = '...' .. cwd:sub(slash)
+      cwd = cwd_uri.file_path
+      hostname = cwd_uri.host or wezterm.hostname()
+    else
+      cwd_uri = cwd_uri:sub(8)
+      local slash = cwd_uri:find '/'
+      if slash then
+        hostname = cwd_uri:sub(1, slash - 1)
+        -- Remove the domain name portion of the hostname
+        local dot = hostname:find '[.]'
+        if dot then
+          hostname = hostname:sub(1, dot - 1)
+        end
+        -- and extract the cwd from the uri
+        -- cwd = cwd_uri:sub(slash)
+        -- Handle the url-encoded uri
+        cwd = urlDecode(cwd_uri:sub(slash))
+
+        -- Handle extra long dirnames. Currently buggy?
+        -- And replace home directory with `~`
+        cwd = cwd:gsub('^/home/marco', '~')
+        local basename_len = cwd:reverse():find('/')
+        if cwd == '~' then
+          basename_len = 0
+        end
+        local CWD_MAX_LEN = 26
+
+        -- Displays the current dir anyway
+        if basename_len > CWD_MAX_LEN then
+          -- 'Tis buggy
+          -- cwd = '...' .. wezterm.truncate_left(cwd, #cwd - basename_len + 2)
+          cwd = '...' .. cwd:sub(#cwd - basename_len + 1)
+        -- Truncate, based on max length
+        elseif #cwd > CWD_MAX_LEN then
+          -- cwd = cwd:reverse():sub(slash)
+          cwd = wezterm.truncate_left(cwd, CWD_MAX_LEN)
+          local slash = cwd:find '/'
+          cwd = '...' .. cwd:sub(slash)
+        end
       end
 
       table.insert(cells, cwd)
@@ -174,6 +183,9 @@ return {
   window_background_opacity = 0.95,
   use_fancy_tab_bar = false,
   tab_max_width = 18,
+
+  front_end = "WebGpu",
+  -- freetype_load_flags = "DEFAULT",
 
   -- Update checker. Left here just in case I want to disable it
   check_for_updates = true,
