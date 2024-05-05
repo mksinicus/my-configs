@@ -20,6 +20,8 @@ patch:
   - schema: zyenpheng
   - schema: greek_polytonic
   - schema: occidental
+  - schema: tibetan
+  - schema: arabic_transcript
   "switcher/hotkeys":
   - "Control+grave"
   "menu/page_size": 9

@@ -12,7 +12,7 @@ export def main [] {
     helix_theme:    "~/.config/helix/runtime/themes/solarized_mine.toml"
     nushell:        "~/.config/nushell/config.nu"
     nushell-env:    "~/.config/nushell/env.nu"
-    nushell-plugin: "~/.config/nushell/plugin.nu"
+    nushell-plugin: "~/.config/nushell/plugin.msgpackz"
     nushell-def:    "~/nu/definitions.nu"
     bat:            "~/.config/bat/config"
     bottom:         "~/.config/bottom/bottom.toml"

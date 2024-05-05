@@ -91,6 +91,7 @@ use std 'path add'
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 path add [
+  ($env.HOME | path join '.moon' 'bin')
   ($env.HOME | path join 'neovim' 'bin')
   ($env.HOME | path join 'bin' 'zig-linux')
   ($env.HOME | path join '.cargo' 'bin')
@@ -103,6 +104,7 @@ path add [
   ($env.HOME | path join 'bin' 'gradle-8.4' 'bin')
   # ($env.HOME | path join 'android-sdk' 'cmdline-tools' 'tools' 'bin')
   # ($env.HOME | path join bin node-v18.12.1-linux-x64 bin)
+  ($env.HOME | path join 'bin' 'typst')
 ]
 
 path add --append [

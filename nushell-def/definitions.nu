@@ -17,6 +17,8 @@ export use broot.nu [br]
 
 export use zoxide.nu [z, zi]
 
+export use yazi.nu [yy]
+
 ## Custom completions/externs
 
 # Subcommands ain't good for an editor
@@ -136,5 +138,10 @@ export use cfg.nu
 export use nota.nu
 alias nt = nota
 
+export use ifc.nu
+
 export use html-to-markdown.nu
 alias h2m = html-to-markdown
+
+export use katalog.nu
+alias ktlg = katalog

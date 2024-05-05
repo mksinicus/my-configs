@@ -23,6 +23,7 @@ file-types = [
   "qmd"
 ]
 comment-token = "#"
+block-comment-tokens = { start = "<!--", end = "-->"}
 
 # [[language]]
 # name = "markdown"
