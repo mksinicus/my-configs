@@ -21,7 +21,8 @@ patch:
   - schema: greek_polytonic
   - schema: occidental
   - schema: tibetan
-  - schema: arabic_transcript
+  - schema: arabic_mac
+  - schema: mostaert
   "switcher/hotkeys":
   - "Control+grave"
   "menu/page_size": 9
